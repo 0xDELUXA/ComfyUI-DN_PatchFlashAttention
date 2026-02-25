@@ -4,10 +4,14 @@ A ComfyUI custom node that patches the attention mechanism to use [Flash Attenti
 
 ## Requirements
 
-`flash-attn` must be installed and working in your ComfyUI Python environment. Grab a prebuilt wheel matching your Python/PyTorch/CUDA versions from the [flash-attention releases page](https://github.com/Dao-AILab/flash-attention/releases), or build from source:
+`flash-attn` must be installed and working in your ComfyUI Python environment. Grab a prebuilt wheel matching your Python/PyTorch/CUDA versions from the [flash-attention releases page](https://github.com/Dao-AILab/flash-attention/releases), or build from source (AMD):
 
 ```bash
-pip install flash-attn --no-build-isolation
+git clone https://github.com/Dao-AILab/flash-attention.git
+cd flash-attention/
+pip install ninja
+$env:FLASH_ATTENTION_TRITON_AMD_ENABLE = "TRUE"
+python setup.py install
 ```
 
 ## Installation
@@ -25,7 +29,7 @@ Then restart ComfyUI.
 
 Find the node under **DN > FlashAttention > Patch Flash Attention DN**.
 
-Wire it between your model loader and sampler — the patched MODEL output is what you connect to KSampler:
+Wire it between your model loader and sampler - the patched MODEL output is what you connect to KSampler:
 
 ```
 Load Checkpoint → Patch Flash Attention DN → KSampler
@@ -35,10 +39,10 @@ Set `enabled` to `False` to bypass the patch and pass the model through unchange
 
 ## Notes
 
-- Requires fp16 or bf16 — fp32 inputs are automatically cast to fp16 and cast back
-- Attention masks are not supported by `flash_attn_func` and will be ignored with a warning (this is fine for standard txt2img/img2img workflows)
 - The `--use-flash-attention` ComfyUI startup flag does not reliably force FA2 in all cases; this node guarantees it via the `optimized_attention_override` mechanism
-- Tested with Flux; should work with SD1.5, SDXL, and other architectures
+- Requires fp16 or bf16 — fp32 inputs are automatically cast to fp16 and cast back
+- Attention masks are not supported by `flash_attn_func` and will be ignored with a warning
+- Tested with Flux, Qwen, and SDXL; should also work with SD1.5 and other models
 
 ## Credits
 
