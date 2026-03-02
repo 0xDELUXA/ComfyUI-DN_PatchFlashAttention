@@ -2,6 +2,8 @@
 
 A ComfyUI custom node that patches the attention mechanism to use [Flash Attention 2](https://github.com/Dao-AILab/flash-attention) on AMD, similar to how **Patch Sage Attention KJ** works in KJNodes.
 
+> **Note:** Untested on Nvidia, but should theoretically work.
+
 ## Requirements
 
 `flash_attn` must be installed and working in your ComfyUI Python environment. Build from source and install on AMD:
