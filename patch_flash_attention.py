@@ -68,7 +68,7 @@ class PatchFlashAttentionDN():
     FUNCTION = "patch"
     DESCRIPTION = (
         "Patches ComfyUI attention to use Flash Attention 2 (flash_attn). "
-        "Requires the flash-attn package. Wire the output MODEL into your sampler."
+        "Requires the flash_attn package. Wire the output MODEL into your sampler."
     )
     EXPERIMENTAL = True
     CATEGORY = "DN/FlashAttention"
@@ -83,7 +83,7 @@ class PatchFlashAttentionDN():
             raise RuntimeError(
                 "flash_attn is not installed. "
                 "Install it from https://github.com/Dao-AILab/flash-attention/releases "
-                "or with: pip install flash-attn --no-build-isolation"
+                "or with: pip install flash_attn --no-build-isolation"
             )
 
         model_clone = model.clone()
