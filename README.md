@@ -32,7 +32,7 @@ Find the node under **DN > FlashAttention > Patch Flash Attention DN**.
 Wire it between your model loader and sampler - the patched MODEL output is what you connect to KSampler:
 
 ```
-Load Checkpoint > Patch Flash Attention DN > KSampler
+Load Checkpoint --> Patch Flash Attention DN --> KSampler
 ```
 
 Set `enabled` to `False` to bypass the patch and pass the model through unchanged.
