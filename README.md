@@ -4,7 +4,7 @@ A ComfyUI custom node that patches the attention mechanism to use [Flash Attenti
 
 ## Requirements
 
-`flash_attn` must be installed and working in your ComfyUI Python environment. Build from source and install it on AMD:
+`flash_attn` must be installed and working in your ComfyUI Python environment. Build from source and install on AMD:
 
 ```bash
 git clone https://github.com/Dao-AILab/flash-attention.git
@@ -13,6 +13,8 @@ pip install ninja
 $env:FLASH_ATTENTION_TRITON_AMD_ENABLE = "TRUE"
 python setup.py install
 ```
+
+> **Note:** Windows users must install Triton by running `pip install triton-windows`.
 
 ## Installation
 
@@ -24,6 +26,8 @@ git clone https://github.com/0xDELUXA/ComfyUI-DN_PatchFlashAttention
 ```
 
 Then restart ComfyUI.
+
+> **Note:** Windows users must set the `FLASH_ATTENTION_TRITON_AMD_ENABLE="TRUE"` environment variable before launching ComfyUI for FA-2 to work with `triton-windows`.
 
 ## Usage
 
