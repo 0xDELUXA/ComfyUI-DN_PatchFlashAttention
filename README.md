@@ -1,12 +1,13 @@
 # ComfyUI-DN_PatchFlashAttention
 
-A ComfyUI custom node that patches the attention mechanism to use [Flash Attention 2](https://github.com/Dao-AILab/flash-attention) on AMD, similar to how **Patch Sage Attention KJ** works in KJNodes.
+A ComfyUI custom node that patches the attention mechanism to use [Flash Attention 2](https://github.com/Dao-AILab/flash-attention), similar to how **Patch Sage Attention KJ** works in KJNodes.
 
 > **Note:** Untested on Nvidia, but should theoretically work.
 
 ## Requirements
 
-`flash_attn` must be installed and working in your ComfyUI Python environment. Build from source and install on AMD:
+`flash_attn` must be installed and working in your ComfyUI Python environment. 
+Build from source and install on AMD:
 
 ```bash
 git clone https://github.com/Dao-AILab/flash-attention.git
@@ -29,7 +30,7 @@ git clone https://github.com/0xDELUXA/ComfyUI-DN_PatchFlashAttention
 
 Then restart ComfyUI.
 
-> **Note:** Windows users must set the `FLASH_ATTENTION_TRITON_AMD_ENABLE="TRUE"` environment variable before launching ComfyUI for FA-2 to work with `triton-windows`.
+> **Note:** Windows users must set the `FLASH_ATTENTION_TRITON_AMD_ENABLE="TRUE"` environment variable before launching ComfyUI to make FA-2 work with `triton-windows`.
 
 ## Usage
 
