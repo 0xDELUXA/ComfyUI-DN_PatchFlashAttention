@@ -83,7 +83,8 @@ class PatchFlashAttentionDN():
             raise RuntimeError(
                 "flash_attn is not installed. "
                 "Install it from https://github.com/Dao-AILab/flash-attention/releases "
-                "or with: pip install flash_attn --no-build-isolation"
+                "or with: pip install flash_attn --no-build-isolation "
+                "or build it from source"
             )
 
         model_clone = model.clone()
