@@ -28,7 +28,7 @@ Documentation = "https://github.com/0xDELUXA/ComfyUI-DN_PatchFlashAttention/wiki
 "Bug Tracker" = "https://github.com/0xDELUXA/ComfyUI-DN_PatchFlashAttention/issues"
 
 [tool.comfy]
-PublisherId = ""
+PublisherId = "deluxa"
 DisplayName = "ComfyUI-DN_PatchFlashAttention"
 Icon = ""
 includes = [] 
