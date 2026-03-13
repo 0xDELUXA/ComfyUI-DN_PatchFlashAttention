@@ -1,7 +1,7 @@
 [project]
 name = "dn_patchflashattention"
 description = "A ComfyUI custom node that patches the attention mechanism to use Flash Attention 2, similar to how Patch Sage Attention KJ works in KJNodes."
-version = "1.0.0"
+version = "1.0.1"
 license = {file = "LICENSE"} 
 # classifiers = [
 #     # For OS-independent nodes (works on all operating systems)
