@@ -20,15 +20,15 @@ def get_flash_attn_func():
             # flash_attn expects (b, seq, heads, dim_head)
             q, k, v = q.transpose(1, 2), k.transpose(1, 2), v.transpose(1, 2)
         else:
-            # q/k/v are (b, seq, heads*dim_head)
-            b, seq, _ = q.shape
+            # q is (b, seq_q, heads*dim_head); k/v may have different seq lengths (e.g. cross-attention)
+            b, seq_q, _ = q.shape
             dim_head = q.shape[-1] // heads
-            q = q.view(b, seq, heads, dim_head)
-            k = k.view(b, seq, heads, dim_head)
-            v = v.view(b, seq, heads, dim_head)
+            q = q.view(b, seq_q, heads, dim_head)
+            k = k.view(b, k.shape[1], heads, dim_head)
+            v = v.view(b, v.shape[1], heads, dim_head)
 
         if mask is not None:
-            logging.warning("PatchFlashAttentionDN: attention mask ignored (not natively supported by flash_attn_func).")
+            logging.warning("PatchFlashAttentionDN: Attention mask ignored (not natively supported by flash_attn_func).")
 
         # flash_attn_func: (b, seq, heads, dim_head) -> (b, seq, heads, dim_head)
         out = flash_attn_func(q, k, v, causal=False)
@@ -44,7 +44,7 @@ def get_flash_attn_func():
                 # caller wants (b, heads, seq, dim_head)
                 out = out.transpose(1, 2)
             else:
-                out = out.reshape(b, seq, heads * dim_head)
+                out = out.reshape(b, seq_q, heads * dim_head)
 
         return out.to(in_dtype)
 
