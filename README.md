@@ -13,12 +13,12 @@ Build from source and install on AMD:
 ```bash
 git clone https://github.com/Dao-AILab/flash-attention.git
 cd flash-attention/
-pip install ninja
+pip install packaging
 $env:FLASH_ATTENTION_TRITON_AMD_ENABLE = "TRUE"
 python setup.py install
 ```
 
-> **Note:** Windows users must install Triton by running `pip install triton-windows`.
+> **Note:** Windows users must install Triton by running `pip install triton-windows`, and set `$env:HIP_PATH = & python -c "import _rocm_sdk_core, os; print(os.path.dirname(_rocm_sdk_core.__file__))"`.
 
 ## Installation
 
